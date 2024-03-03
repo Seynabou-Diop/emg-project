@@ -2,11 +2,10 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using MyCars.Data; // Assurez-vous d'ajuster le namespace en fonction de votre structure de projet
+using MyCars.Data; 
 using MyCars.Models;
 using MyCars.Services;
-using System;
-using System.Threading.Tasks;
+
 
 namespace MyCars.Areas.Cars.Pages
 {

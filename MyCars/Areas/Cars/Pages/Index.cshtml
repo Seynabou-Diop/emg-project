@@ -1,4 +1,5 @@
 ﻿@page
+@using System.Security.Claims
 @model MyCars.Areas.Cars.Pages.IndexModel
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
@@ -6,6 +7,23 @@
 @{
     ViewData["Title"] = "Index";
 }
+<style>
+
+    body {
+        background-color: lightgray; 
+    }
+
+    h1 {
+        color: saddlebrown;
+    }
+
+    .btn-primary {
+        background-color: saddlebrown; 
+        border-color: saddlebrown;
+    }
+
+</style>
+
 
 <h1 class="mb-4">Car Inventory</h1>
 
@@ -15,6 +33,9 @@
         <a asp-page="Create" class="btn btn-primary">Add New Car</a>
     }
 </p>
+
+<!--<p>User Roles: @string.Join(", ", User.Claims.Where(c => c.Type == ClaimTypes.Role).Select(c => c.Value))</p>-->
+
 
 <div class="table-responsive">
     <table class="table table-bordered table-striped">
@@ -33,7 +54,10 @@
                 <th>@Html.DisplayNameFor(model => model.Car[0].SalePrice)</th>
                 <th>@Html.DisplayNameFor(model => model.Car[0].SaleDate)</th>
                 <th>@Html.DisplayNameFor(model => model.Car[0].Sold)</th>
-                <th>Action</th>
+                   @if (User.IsInRole("Admin"))
+                {
+                    <th>Action</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -58,14 +82,17 @@
                     <td>@Html.DisplayFor(modelItem => item.SalePrice)</td>
                     <td>@Html.DisplayFor(modelItem => item.SaleDate)</td>
                     <td>@Html.DisplayFor(modelItem => item.Sold)</td>
+                    @if (User.IsInRole("Admin"))
+                    {
 
-                    <td>
-                        <div class="btn-group">
-                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edit</a>
-                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
-                            <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
-                        </div>
-                    </td>
+                        <td>
+                            <div class="btn-group">
+                                <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edit</a>
+                                <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                                <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                            </div>
+                        </td>
+                    }
                 </tr>
             }
         </tbody>

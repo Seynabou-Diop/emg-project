@@ -5,11 +5,45 @@
     ViewData["Title"] = "Edit";
 }
 
-<div class="container mt-4">
-    <h1>Edit Car</h1>
+<style>
+    body {
+        background-color: lightgray;
+        padding: 20px;
+    }
 
-    <div class="card">
-        <div class="card-body">
+    h1, .card-title {
+        color: saddlebrown;
+    }
+
+    .btn-success {
+        background-color: saddlebrown;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .custom-card {
+        max-width: 550px;
+        margin: 0 auto;
+        background-color: #fff; /* Ajout d'une couleur de fond pour la card */
+        border: 1px solid #dee2e6; /* Ajout d'une bordure légère */
+        border-radius: 8px; /* Bords arrondis */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Légère ombre pour la profondeur */
+    }
+
+    .custom-card-body {
+        padding: 20px;
+    }
+</style>
+
+<div class="container mt-4">
+    <h1 class="text-center mb-4">Edit Car</h1>
+
+    <div class="card custom-card">
+        <div class="card-body custom-card-body">
             <h4 class="card-title">Car Details</h4>
             <hr />
 
@@ -17,8 +51,8 @@
                 <partial name="~/Pages/Shared/EditorTemplates/Car.cshtml" model="@Model.Car" />
 
                 <div class="form-group mt-3">
-                    <button type="submit" class="btn btn-success">Save Changes</button>
-                    <a asp-page="./Index" class="btn btn-secondary ml-2">Back to List</a>
+                    <button type="submit" class="btn btn-success btn-block">Save Changes</button>
+                    <a asp-page="./Index" class="btn btn-secondary">Back to List</a>
                 </div>
             </form>
         </div>

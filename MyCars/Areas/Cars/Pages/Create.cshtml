@@ -5,6 +5,56 @@
     ViewData["Title"] = "Create";
 }
 
+<style>
+    body {
+        background-color: lightgray;
+        text-align: center;
+        padding: 50px;
+    }
+
+    h1 {
+        color: saddlebrown;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 0 auto;
+    }
+
+    .form-group {
+        margin-top: 20px;
+    }
+
+    .btn-primary, .btn-success {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        text-decoration: none;
+        cursor: pointer;
+        margin-right: 10px;
+    }
+
+    .btn-primary {
+        background-color: saddlebrown;
+        color: #fff;
+        transition: background-color 0.3s;
+    }
+
+        .btn-primary:hover {
+            background-color: #8b4513;
+        }
+
+    .btn-success {
+        background-color: #28a745;
+        color: #fff;
+        transition: background-color 0.3s;
+    }
+
+        .btn-success:hover {
+            background-color: #218838;
+        }
+</style>
+
 <div class="container mt-4">
     <h1>Create a New Car</h1>
 
@@ -17,9 +67,9 @@
 
                 <partial name="~/Pages/Shared/EditorTemplates/Car.cshtml" model="@Model.Car" />
 
-                <div class="form-group mt-3">
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary">Create</button>
-                    <a asp-page="Index" class="btn btn-success ml-2">Back to List</a>
+                    <a asp-page="Index" class="btn btn-success">Back to List</a>
                 </div>
 
             </form>

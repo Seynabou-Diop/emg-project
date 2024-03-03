@@ -38,10 +38,16 @@
             text-decoration: none;
             border-radius: 5px;
         }
+
+        .custom-link:hover {
+            text-decoration: none; 
+            color: white;
+            font-size:16;
+        }
     </style>
 </head>
 <body>
-    <!-- Contenu simple avec un titre, un paragraphe et un bouton -->
+
     <h1>Welcome to EMG</h1>
     <p>Discover a world of amazing cars in our collection.</p>
     <div>
@@ -50,7 +56,7 @@
             Your browser does not support the video tag.
         </video>
     </div>
-    <a asp-page="/Index" asp-area="Cars" class="cta-button">Get Started</a>
+    <a asp-page="/Index" asp-area="Cars" class="cta-button custom-link">Get Started</a>
 
 </body>
 </html>

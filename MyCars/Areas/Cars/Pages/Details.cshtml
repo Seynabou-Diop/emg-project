@@ -4,7 +4,44 @@
 @{
     ViewData["Title"] = "Details";
 }
+<style>
+    body {
+        background-color: lightgray;
+    }
 
+    h1 {
+        color: saddlebrown;
+    }
+
+    .row dt {
+        color: saddlebrown;
+    }
+
+    .row dd {
+        color: #6c757d;
+    }
+
+    .edit-link, .back-link {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-top: 20px;
+        background-color: saddlebrown;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        transition: background-color 0.3s;
+    }
+    .edit-link, .back-link {
+        color: white;
+        text-decoration: none;
+    }
+
+        .edit-link:hover, .back-link:hover {
+            background-color: #59352b;
+            text-decoration: none;
+            color:inherit;
+        }
+    </style>
 <h1>Details</h1>
 
 <div>
@@ -90,8 +127,7 @@
             @Html.DisplayFor(model => model.Car.Sold)
         </dd>
     </dl>
-</div>
-<div>
-    <a asp-page="./Edit" asp-route-id="@Model.Car.Id">Edit</a> |
-    <a asp-page="./Index">Back to List</a>
-</div>
+    <div>
+        <a asp-page="./Edit" asp-route-id="@Model.Car.Id" class="edit-link">Edit</a>
+        <a asp-page="./Index" class="back-link ml-2">Back to List</a>
+    </div>

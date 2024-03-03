@@ -13,8 +13,12 @@ builder.Services.AddDbContext<ApplicationDbContext>(options =>
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = false)
-    .AddRoles<IdentityRole>() // AddRoles is chained here
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddRoles<IdentityRole>() 
+    .AddEntityFrameworkStores<ApplicationDbContext>()
+    .AddDefaultTokenProviders()
+                .AddDefaultUI(); ;
+
+
 
 builder.Services.AddRazorPages();
 
@@ -23,18 +27,9 @@ builder.Services.AddSingleton<ImageService>();
 
 var app = builder.Build();
 
-using (var scope = app.Services.CreateScope())
-{
-    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-    var roles = new[] { "Admin", "Manager", "Member" };
+var scope = app.Services.CreateScope();
 
-    foreach (var role in roles)
-    {
-        if (!await roleManager.RoleExistsAsync(role))
-        {
-            await roleManager.CreateAsync(new IdentityRole(role));
-        }
-    }
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
 
     var roleExist = await roleManager.RoleExistsAsync("Admin");
@@ -43,18 +38,25 @@ using (var scope = app.Services.CreateScope())
         await roleManager.CreateAsync(new IdentityRole("Admin"));
     }
 
-    var adminUser = await userManager.FindByEmailAsync("admin@example.com");
+    var adminUser = await userManager.FindByEmailAsync("admin@emg.com");
     if (adminUser == null)
     {
         adminUser = new IdentityUser
         {
-            UserName = "admin@example.com",
-            Email = "admin@example.com",
+            UserName = "admin@emg.com",
+            Email = "admin@emg.com",
         };
-        await userManager.CreateAsync(adminUser, "Admin@123");
+        Console.WriteLine("Creatiiiiing");
+
+        var admin = await userManager.CreateAsync(adminUser, "Admin@123");
+        if (admin.Succeeded)
+        {
+            await userManager.AddToRoleAsync(adminUser, "Admin");
+            Console.WriteLine("Create {0}", adminUser.UserName);
+        }
         await userManager.AddToRoleAsync(adminUser, "Admin");
     }
-}
+
 
     if (app.Environment.IsDevelopment())
 {
