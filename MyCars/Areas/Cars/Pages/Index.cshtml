@@ -1,0 +1,93 @@
+﻿@page
+@model MyCars.Areas.Cars.Pages.IndexModel
+@inject SignInManager<IdentityUser> SignInManager
+@inject UserManager<IdentityUser> UserManager
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 class="mb-4">Car Inventory</h1>
+
+<p>
+    @if (User.IsInRole("Admin"))
+    {
+        <a asp-page="Create" class="btn btn-primary">Add New Car</a>
+    }
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>@Html.DisplayNameFor(model => model.Car[0].CodeVIN)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].Brand)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].Model)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].Trim)</th>
+                <th>Image</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].PurchaseDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].PurchasePrice)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].Repairs)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].RepairCosts)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].SaleAvailableDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].SalePrice)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].SaleDate)</th>
+                <th>@Html.DisplayNameFor(model => model.Car[0].Sold)</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Car)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(modelItem => item.CodeVIN)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Brand)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Model)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Trim)</td>
+                    <td>
+                        @if (item.Image != null)
+                        {
+                            <img src="@Url.Content(item.Image.Path)" width="64" height="64">
+                        }
+                    </td>
+                    <td>@Html.DisplayFor(modelItem => item.PurchaseDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.PurchasePrice)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Repairs)</td>
+                    <td>@Html.DisplayFor(modelItem => item.RepairCosts)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SaleAvailableDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SalePrice)</td>
+                    <td>@Html.DisplayFor(modelItem => item.SaleDate)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Sold)</td>
+
+                    <td>
+                        <div class="btn-group">
+                            <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary btn-sm">Edit</a>
+                            <a asp-page="./Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                            <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="d-flex justify-content-end">
+        <nav aria-label="Page navigation">
+            <ul class="pagination">
+                <li class="page-item">
+                    <a class="page-link" asp-page="./Index" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item"><a class="page-link" href="#">2</a></li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

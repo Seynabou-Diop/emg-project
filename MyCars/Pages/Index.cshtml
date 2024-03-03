@@ -1,0 +1,56 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - MyCars</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/MyCars.styles.css" asp-append-version="true" />
+
+    <style>
+        body {
+            text-align: center;
+            padding: 50px;
+            background-color:lightgray;
+        }
+
+        h1 {
+            color: saddlebrown; 
+        }
+
+        p {
+            color: #6c757d;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-top: 20px;
+            background-color: saddlebrown;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Contenu simple avec un titre, un paragraphe et un bouton -->
+    <h1>Welcome to EMG</h1>
+    <p>Discover a world of amazing cars in our collection.</p>
+    <div>
+        <video width="940" height="560" controls autoplay>
+            <source src="~/cars/images/car.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <a asp-page="/Index" asp-area="Cars" class="cta-button">Get Started</a>
+
+</body>
+</html>

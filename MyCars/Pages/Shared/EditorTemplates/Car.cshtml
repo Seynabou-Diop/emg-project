@@ -1,0 +1,98 @@
+﻿@model MyCars.Models.Car
+
+@{
+    ViewData.TemplateInfo.HtmlFieldPrefix = "Car";
+}
+
+<div class="form-group">
+    <label asp-for="CodeVIN" class="control-label"></label>
+    <input asp-for="CodeVIN" class="form-control" />
+    <span asp-validation-for="CodeVIN" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Year" class="control-label"></label>
+    <input asp-for="Year" class="form-control" type="number" min="1990" max="2024" value="1990" placeholder="Enter year" />
+    <span asp-validation-for="Year" class="text-danger"></span>
+</div>
+
+
+<div class="form-group">
+    <label asp-for="Brand" class="control-label"></label>
+    <input asp-for="Brand" class="form-control" />
+    <span asp-validation-for="Brand" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Model" class="control-label"></label>
+    <input asp-for="Model" class="form-control" />
+    <span asp-validation-for="Model" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Trim" class="control-label"></label>
+    <input asp-for="Trim" class="form-control" />
+    <span asp-validation-for="Trim" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="PurchaseDate" class="control-label"></label>
+    <input asp-for="PurchaseDate" class="form-control" />
+    <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="PurchasePrice" class="control-label"></label>
+    <input asp-for="PurchasePrice" class="form-control" />
+    <span asp-validation-for="PurchasePrice" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Repairs" class="control-label"></label>
+    <input asp-for="Repairs" class="form-control" />
+    <span asp-validation-for="Repairs" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="RepairCosts" class="control-label"></label>
+    <input asp-for="RepairCosts" class="form-control" />
+    <span asp-validation-for="RepairCosts" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="SaleAvailableDate" class="control-label"></label>
+    <input asp-for="SaleAvailableDate" class="form-control" />
+    <span asp-validation-for="SaleAvailableDate" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="SalePrice" class="control-label"></label>
+    <input asp-for="SalePrice" class="form-control" />
+    <span asp-validation-for="SalePrice" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="SaleDate" class="control-label"></label>
+    <input asp-for="SaleDate" class="form-control" />
+    <span asp-validation-for="SaleDate" class="text-danger"></span>
+</div>
+
+<div class="form-group">
+    <label asp-for="Sold" class="control-label"></label>
+    <select asp-for="Sold" class="form-control">
+        <option value="true">Oui</option>
+        <option value="false">Non</option>
+    </select>
+    <span asp-validation-for="Sold" class="text-danger"></span>
+</div>
+
+
+<div class="form-group">
+    <label asp-for="Image.File" class="control-label"></label>
+    @if (null != Model.Image)
+    {
+        <span>(<a target="_blank" href="@Url.Content($"~/{Model.Image.Path}")">@Model.Image.Name</a>)</span>
+    }
+    <input type="file" asp-for="Image.File" class="form-control" />
+    <span asp-validation-for="Image.File" class="text-danger"></span>
+</div>

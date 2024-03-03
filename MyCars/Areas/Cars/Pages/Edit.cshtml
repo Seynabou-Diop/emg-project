@@ -1,0 +1,26 @@
+﻿@page
+@model MyCars.Areas.Cars.Pages.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<div class="container mt-4">
+    <h1>Edit Car</h1>
+
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Car Details</h4>
+            <hr />
+
+            <form method="post" enctype="multipart/form-data">
+                <partial name="~/Pages/Shared/EditorTemplates/Car.cshtml" model="@Model.Car" />
+
+                <div class="form-group mt-3">
+                    <button type="submit" class="btn btn-success">Save Changes</button>
+                    <a asp-page="./Index" class="btn btn-secondary ml-2">Back to List</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
